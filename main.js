@@ -151,23 +151,7 @@ function determineWinner(){
 //6) Handle a player clicking the replay button:
 //	6.1) Do steps 4.1 (initialize the state variables) and 4.2 (render).
 
-
-
-
-
-
 //functions
-
-
-
-
-
-
-
-
-
-
-
 
 //Display an empty tic-tac-toe board when the page is initially displayed.
 //A player can click on the nine cells to make a move.
