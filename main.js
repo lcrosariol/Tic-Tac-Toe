@@ -56,19 +56,46 @@ function initialize(){
 //		4.1.3) Initialize winner to null to represent that there is no winner or tie yet. 
 
     winner = null;
-}
+
 //              Winner will hold the player value (1 or -1) if there's a winner. Winner will hold a 'T' if there's a tie. 
+    render();
+}
+
+// The render() function's responsibility is to transfer all state to the DOM. This includes the hiding/showing of parts of the 
+//  UI based upon the application's state. For example, when a hand is in play in a game of Blackjack, the render() function would 
+//  show the hit/stand buttons and hide the betting-related buttons. 
+
+//  Also, if the render() function becomes too large, you can break 
+//  it up into smaller functions, e.g., renderScores(),
+
+
 //	4.2) Render those state variables to the page:
 //		4.2.1) Render the board:
 //			4.2.1.1) Loop over each of the 9 elements that represent the squares on the page, and for each iteration:
 //				4.2.1.1.2) Use the index of the iteration to access the mapped value from the board array.
 //				4.3.1.1.3) Set the background color of the current element by using the value as a key on the colors lookup object (constant).
+
+function render() {
+    gameBoard.forEach(function(square, idx) {
+        squaresOnGameBoard[idx].style.background = lookup[square];
+
+    });
+
+
 //		4.2.2) Render a message:
 //			4.2.2.1) If winner has a value other than null (game still in progress), render whose turn it is - use the color name for the player, converting it to upper case.
 //			4.2.2.2) If winner is equal to 'T' (tie), render a tie message.
 //			4.2.2.3) Otherwise, render a congratulatory message to which player has won - use the color name for the player, converting it to uppercase.
 //	4.3) Wait for the user to click a square
 
+    if (winner === 'T') {
+        message.innerHTML = 'TIE';
+    } else if (winner) {
+        message.innerHTML = `Congrats ${lookup[winner].toUpperCase()}!`;
+    } else {
+        message.innerHTML = `${lookup[turn].toUpperCase()}`;
+    }
+}
 
 
 //cache
