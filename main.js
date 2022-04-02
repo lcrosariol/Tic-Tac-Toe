@@ -77,7 +77,7 @@ function initialize(){
 
 function render() {
     gameBoard.forEach(function(square, idx) {
-        squaresOnGameBoard[idx].style.background = lookup[square];
+        squaresOnGameBoard[idx].style.background = squareColorEmpty[square];
 
     });
 
@@ -90,9 +90,9 @@ function render() {
     if (winner === 'T') {
         message.innerHTML = 'TIE';
     } else if (winner) {
-        message.innerHTML = `Congrats ${lookup[winner].toUpperCase()}!`;
+        message.innerHTML = `Congrats ${squareColorEmpty[winner].toUpperCase()}!`;
     } else {
-        message.innerHTML = `${lookup[turn].toUpperCase()}`;
+        message.innerHTML = `${squareColorEmpty[turn].toUpperCase()}`;
     }
 }
 
@@ -119,10 +119,19 @@ function playerTurn(evt) {
 //update the game board squares, turns, and winner situation
     turn *= -1;
 //The multiplication assignment operator ( *= ) multiplies a variable by the value of the right operand and assigns the result to the variable.
-    winner = getWinner();
+    winner = determineWinner();
     render();
 }
 
+
+function determineWinner(){
+    for (let i =0; i < winConditions.length; i++){
+      if (Math.abs(squaresOnGameBoard[winConditions[i][0] + squaresOnGameBoard[winConditions[i][1] + squaresOnGameBoard[winConditions[i][2]] === 3) return squaresOnGameBoard[winConditions[i][0]];  
+
+//The Math.abs() function returns the absolute value of a number. That is, it returns x if x is positive or zero, and the negation of x if x is negative.
+
+    }
+}   
 //	5.2) If the board has a value at the index, immediately return because that square is already taken.
 //	5.3) If winner is not null, immediately return because the game is over.
 //	5.4) Update the board array at the index with the value of turn.
@@ -135,7 +144,9 @@ function playerTurn(evt) {
 //	5.7) If there's no winner, check if there's a tie:
 //		5.7.1) Set winner to 'T' if there are no more nulls in the board array.
 //	5.8) All state has been updated, so render the state to the page (step 4.2).
-		
+	if (squaresOnGameBoard.includes(null)) return null;
+    return 'T';
+}
 
 //6) Handle a player clicking the replay button:
 //	6.1) Do steps 4.1 (initialize the state variables) and 4.2 (render).
