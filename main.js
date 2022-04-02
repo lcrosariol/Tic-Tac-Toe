@@ -10,17 +10,19 @@ const squareColorEmpty = {
     'null': 'red'
 };
 
-
-
 //	1.2) Define the 8 possible winning combinations, each containing three 
 //       indexes of the board that make a winner if they hold the same player value.
 
-
-
-
-
-
-
+const winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
 
 //var - used to track the state of the game
 //    -Store elements on the page that will be accessed in code more 
@@ -31,8 +33,12 @@ const squareColorEmpty = {
 //  2.2) Use a turn variable to remember whose turn it is.
 //	2.3) Use a winner variable to represent three different possibilities - player that won, a tie, or game in play.
 
+let gameBoard, turns, winner;
+
 //3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
 //	3.1) Store the 9 elements that represent the squares on the page.
+
+let squaresOnGameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 //4) Upon loading the app should:
 //	4.1) Initialize the state variables:
