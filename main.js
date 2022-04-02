@@ -86,7 +86,6 @@ function render() {
 //			4.2.2.1) If winner has a value other than null (game still in progress), render whose turn it is - use the color name for the player, converting it to upper case.
 //			4.2.2.2) If winner is equal to 'T' (tie), render a tie message.
 //			4.2.2.3) Otherwise, render a congratulatory message to which player has won - use the color name for the player, converting it to uppercase.
-//	4.3) Wait for the user to click a square
 
     if (winner === 'T') {
         message.innerHTML = 'TIE';
@@ -97,18 +96,7 @@ function render() {
     }
 }
 
-
-//cache
-
-
-
-
-
-
-
-
-
-
+//	4.3) Wait for the user to click a square
 //event listeners -player clicking on a square
 //                -player clicking on a reset button
 
@@ -117,6 +105,24 @@ function render() {
 //	5.1) Obtain the index of the square that was clicked by either:
 //		5.1.1) "Extracting" the index from an id assigned to the element in the HTML, or
 //		5.1.2) Looping through the cached square elements using a for loop and breaking out when the current square element equals the event object's target.
+
+function playerTurn(evt) {
+
+    const idx = parseInt(evt.target.id.replace('square', ''));
+// Gets the index number of the square.
+//The parseInt function converts its first argument to a string, parses that string, then returns an integer or NaN.    
+
+    if (squaresOnGameBoard[idx] || winner) return;
+//Checks to see if square is used and return 
+
+    squaresOnGameBoard[idx] = turn;
+//update the game board squares, turns, and winner situation
+    turn *= -1;
+//The multiplication assignment operator ( *= ) multiplies a variable by the value of the right operand and assigns the result to the variable.
+    winner = getWinner();
+    render();
+}
+
 //	5.2) If the board has a value at the index, immediately return because that square is already taken.
 //	5.3) If winner is not null, immediately return because the game is over.
 //	5.4) Update the board array at the index with the value of turn.
