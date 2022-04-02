@@ -38,14 +38,25 @@ let gameBoard, turns, winner;
 //3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
 //	3.1) Store the 9 elements that represent the squares on the page.
 
-let squaresOnGameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+// let squaresOnGameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 //4) Upon loading the app should:
 //	4.1) Initialize the state variables:
 //		4.1.1) Initialize the board array to 9 nulls to represent empty squares. 
 //              The 9 elements will "map" to each square, where index 0 maps to the top-left square and index 8 maps to the bottom-right square.
+
+function initialize(){
+    squaresOnGameBoard = [null, null, null, null, null, null, null, null, null];
+
+
 //		4.1.2) Initialize whose turn it is to 1 (player 'X'). Player 'O' will be represented by -1.
+
+    turn = 1;
+
 //		4.1.3) Initialize winner to null to represent that there is no winner or tie yet. 
+
+    winner = null;
+}
 //              Winner will hold the player value (1 or -1) if there's a winner. Winner will hold a 'T' if there's a tie. 
 //	4.2) Render those state variables to the page:
 //		4.2.1) Render the board:
