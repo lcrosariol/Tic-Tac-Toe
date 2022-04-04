@@ -21,7 +21,7 @@ const lookup = {
 //	1.2) Define the 8 possible winning combinations, each containing three 
 //       indexes of the board that make a winner if they hold the same player value.
 
-const winningCombos = [
+const win = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -49,7 +49,7 @@ const squares = document.querySelectorAll('td div');
 const message = document.querySelector('h1');
 
 /*----- event listeners -----*/
-document.querySelector('table').addEventListener('click', handleMove);
+document.querySelector('table').addEventListener('click', choices);
 document.querySelector('button').addEventListener('click', initialize);
 
 //3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
@@ -138,7 +138,7 @@ function render() {
 //		5.1.2) Looping through the cached square elements using a for loop and breaking out when the current square element equals the event object's target.
 
 
-function handleMove(evt) {
+function choices(evt) {
   // obtain index of square
   const idx = parseInt(evt.target.id.replace('sq', ''));
   // Gets the index number of the square.
@@ -158,8 +158,8 @@ function handleMove(evt) {
 }
 
 function getWinner() {
-  for (let i = 0; i < winningCombos.length; i++) {
-    if (Math.abs(board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]]) === 3) return board[winningCombos[i][0]];
+  for (let i = 0; i < win.length; i++) {
+    if (Math.abs(board[win[i][0]] + board[win[i][1]] + board[win[i][2]]) === 3) return board[win[i][0]];
 
     //The Math.abs() function returns the absolute value of a number. That is, it returns x if x is positive or zero, and the negation of x if x is negative.
     
